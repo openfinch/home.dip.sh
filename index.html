@@ -18,16 +18,28 @@
 </head>
 
 <body class="bg-black h-screen overflow-hidden relative font-sans">
-    <div id="starsContainer" class="stars-container absolute inset-0 pointer-events-none"></div>
-    <div class="min-h-screen flex flex-col items-center justify-center relative z-10 gap-12">
-        <h1 class="text-center text-amber-50/90 font-light tracking-[0.375em] md:tracking-[0.75em] text-[4rem] md:text-[5.5rem]">
-            <img src="home-light.png" alt="Home" class="h-[1em] w-auto filter drop-shadow-[0_0_20px_rgba(223,222,211,0.3)] mx-auto" />
-        </h1>
+    <a href="#mainContent" class="sr-only" onfocus="this.style.position='absolute';this.style.left='1rem';this.style.top='1rem';this.style.padding='0.5rem 1rem';this.style.background='#111';this.style.color='#fff';this.style.zIndex='50'">
+        Skip to main content
+    </a>
 
-        <div>
-            <form class="relative" id="searchForm" method="get" action="https://noai.duckduckgo.com/" x-data="{ q: '' }">
-                <input type="text" name="q" placeholder="Searching for stars" autocomplete="off" x-model="q" required
-                       class="w-[90vw] max-w-[400px] md:w-[500px] rounded-full border-2 border-amber-50 bg-transparent text-amber-50 placeholder-amber-50/60 px-5 py-3 outline-none transition focus:[box-shadow:0_0_20px_rgba(223,222,211,0.3)]" />
+    <div id="starsContainer" class="stars-container absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+
+    <header role="banner" class="min-h-screen flex items-center justify-center relative z-10">
+        <div class="w-full flex flex-col items-center gap-12 py-8">
+            <h1 class="text-center text-amber-50/90 font-light tracking-[0.375em] md:tracking-[0.75em] text-[4rem] md:text-[5.5rem]">
+                <img src="home-light.png" alt="Home" class="h-[1em] w-auto filter drop-shadow-[0_0_20px_rgba(223,222,211,0.3)] mx-auto" />
+            </h1>
+        </div>
+    </header>
+
+    <main id="mainContent" role="main" class="min-h-screen flex flex-col items-center justify-center relative z-10 gap-12">
+        <section aria-labelledby="searchHeading" class="w-full flex items-center justify-center">
+            <h2 id="searchHeading" class="sr-only">Search</h2>
+            <form class="relative" id="searchForm" method="get" action="https://noai.duckduckgo.com/" x-data="{ q: '' }" role="search" aria-label="Search the web">
+                <label for="searchInput" class="sr-only">Search the web</label>
+                <input id="searchInput" type="text" name="q" placeholder="Searching for stars" autocomplete="off" x-model="q" required
+                       aria-required="true"
+                       class="w-[90vw] max-w-[400px] md:w-[500px] rounded-full border-2 border-amber-50 bg-transparent text-amber-50 placeholder-amber-50/60 px-5 py-3 outline-none transition focus:[box-shadow:0_0_0_3px_rgba(223,222,211,0.08)]" />
                 <button type="submit" :disabled="q.trim().length === 0" aria-label="Search"
                         class="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-amber-50 transition">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -35,16 +47,23 @@
                                             </svg>
                 </button>
             </form>
-        </div>
+        </section>
 
-        <div id="linksContainer" class="flex flex-wrap justify-center gap-5 md:gap-10">
-            <a href="https://jellyfin.dip.sh/web/" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Dipflix</a>
-            <a href="https://jellyseerr.dip.sh/" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Jellyseerr</a>
-            <a href="https://github.com/openfinch/home.dip.sh" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Source</a>
-            <!-- <a href="#" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Link Three</a> -->
-            <!-- <a href="#" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Link Four</a> -->
-        </div>
-    </div>
+        <nav role="navigation" aria-label="Quick links" class="w-full flex justify-center">
+            <ul id="linksContainer" class="flex flex-wrap justify-center gap-5 md:gap-10 list-none p-0 m-0">
+                <li><a href="https://jellyfin.dip.sh/web/" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Dipflix</a></li>
+                <li><a href="https://jellyseerr.dip.sh/" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Jellyseerr</a></li>
+                <li><a href="https://github.com/openfinch/home.dip.sh" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Source</a></li>
+                <li><a href="https://man.dip.sh" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Notes</a></li> -->
+                <!-- <li><a href="#" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Link Four</a></li> -->
+            </ul>
+        </nav>
+    </main>
+
+    <footer role="contentinfo" class="absolute bottom-4 left-0 right-0 text-center z-10">
+        <p class="text-amber-50/60 text-sm">home.dip.sh — a small personal gateway</p>
+    </footer>
+
     <script>
         let starsContainer = document.getElementById('starsContainer');
         let stars = [];
