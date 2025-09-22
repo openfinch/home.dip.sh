@@ -254,7 +254,7 @@ body {
     background: #dfded3;
     border: none;
     border-radius: 25px;
-    padding: 10px 20px;
+    padding: 10px 14px; /* tighter for icon */
     color: #000000;
     cursor: pointer;
     font-weight: 500;
@@ -263,6 +263,12 @@ body {
 
 .search-button:hover {
     background: rgba(223, 222, 211, 0.9);
+}
+
+.search-button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(223, 222, 211, 0.5);
 }
 
 /* ==================== LINKS BEREICH ==================== */
