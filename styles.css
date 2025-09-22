@@ -263,7 +263,6 @@ body {
 
 .search-button:hover {
     background: rgba(223, 222, 211, 0.9);
-    transform: translateY(-50%) scale(1.05);
 }
 
 /* ==================== LINKS BEREICH ==================== */
