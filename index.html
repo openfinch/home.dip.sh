@@ -18,19 +18,11 @@
 </head>
 
 <body class="bg-black h-screen overflow-hidden relative font-sans">
-    <!-- Skip link -->
-    <a href="#mainContent" class="sr-only"
-       onfocus="this.style.position='absolute';this.style.left='1rem';this.style.top='1rem';this.style.padding='0.5rem 1rem';this.style.background='#111';this.style.color='#fff';this.style.zIndex='50'">
-        Skip to main content
-    </a>
-
-    <!-- Starfield background (stays behind via z-index) -->
     <div id="starsContainer"
          class="stars-container absolute inset-0 pointer-events-none"
          aria-hidden="true"
          style="z-index:0"></div>
 
-    <!-- Centered content wrapper -->
     <div id="content" class="relative z-10 min-h-screen flex flex-col items-center justify-center gap-8 px-4">
         <header role="banner" class="w-full flex items-center justify-center">
             <div class="w-full flex flex-col items-center">
@@ -117,9 +109,7 @@
             const input = document.querySelector('input[name="q"]');
             if (!input) return;
             input.value = '';
-            // Update Alpine x-model and button disabled state
             input.dispatchEvent(new Event('input', { bubbles: true }));
-            // Focus without scrolling the page
             input.focus({ preventScroll: true });
         }
 
