@@ -288,21 +288,6 @@ body {
     text-shadow: 0 0 10px rgba(223, 222, 211, 0.5);
 }
 
-.link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: #dfded3;
-    transition: width 0.3s ease;
-}
-
-.link:hover::after {
-    width: 100%;
-}
-
 /* ==================== RESPONSIVE DESIGN ==================== */
 @media (max-width: 768px) {
     .title {

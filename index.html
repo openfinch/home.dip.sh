@@ -11,18 +11,17 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="home.dip.sh" />
+    <meta name="robots" content="noindex, nofollow" />
     <link rel="manifest" href="/site.webmanifest" />
 </head>
 
 <body>
     <div class="stars-container" id="starsContainer"></div>
     <div class="container">
-        <!-- Überschrift -->
         <h1 class="title">
             <img src="home-light.png" alt="Home" class="title-image">
         </h1>
 
-        <!-- Searchbar -->
         <div class="search-container">
             <form class="search-form" id="searchForm" method="get" action="https://duckduckgo.com/">
                 <input type="text" name="q" class="search-input" placeholder="Searching for stars" autocomplete="off"
@@ -31,7 +30,6 @@
             </form>
         </div>
 
-        <!-- Links -->
         <div class="links-container" id="linksContainer">
             <a href="https://jellyfin.dip.sh/web/" class="link">Dipflix</a>
             <!-- <a href="#" class="link">Link Two</a>
@@ -40,7 +38,6 @@
         </div>
     </div>
     <script>
-        // ==================== STARS ====================
         let starsContainer = document.getElementById('starsContainer');
         let stars = [];
 
@@ -55,7 +52,6 @@
             });
             stars = [];
 
-            // Neue Sterne erstellen
             const numStars = Math.floor(Math.random() * 15) + 10; // 10-25 stars
 
             for (let i = 0; i < numStars; i++) {
