@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>star</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ==================== STERNE ==================== -->
+    <div class="stars-container" id="starsContainer"></div>
+
+    <!-- ==================== EINSTELLUNGSMENÜ ==================== -->
+    <!-- Einstellungsbutton -->
+    <div class="settings-button" onclick="toggleSettings()">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+    </div>
+
+    <!-- Einstellungsmenü -->
+    <div class="settings-menu" id="settingsMenu">
+        <div class="settings-section">
+            <h3>Searchengine</h3>
+            <div class="setting-item">
+                <label>Engine:</label>
+                <select class="search-engine-select" id="searchEngine">
+                    <option value="https://duckduckgo.com/">DuckDuckGo</option>
+                    <option value="https://www.google.com/search">Google</option>
+                    <option value="https://www.bing.com/search">Bing</option>
+                    <option value="https://search.yahoo.com/search">Yahoo</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h3>Links</h3>
+            <div class="setting-item">
+                <label>Link 1:</label>
+                <input type="text" id="linkName1" placeholder="Name">
+            </div>
+            <div class="setting-item">
+                <label>URL 1:</label>
+                <input type="text" id="linkUrl1" placeholder="https://...">
+            </div>
+            <div class="setting-item">
+                <label>Link 2:</label>
+                <input type="text" id="linkName2" placeholder="Name">
+            </div>
+            <div class="setting-item">
+                <label>URL 2:</label>
+                <input type="text" id="linkUrl2" placeholder="https://...">
+            </div>
+            <div class="setting-item">
+                <label>Link 3:</label>
+                <input type="text" id="linkName3" placeholder="Name">
+            </div>
+            <div class="setting-item">
+                <label>URL 3:</label>
+                <input type="text" id="linkUrl3" placeholder="https://...">
+            </div>
+            <div class="setting-item">
+                <label>Link 4:</label>
+                <input type="text" id="linkName4" placeholder="Name">
+            </div>
+            <div class="setting-item">
+                <label>URL 4:</label>
+                <input type="text" id="linkUrl4" placeholder="https://...">
+            </div>
+        </div>
+
+        <button class="save-button" onclick="saveSettings()">Save</button>
+    </div>
+
+    <!-- ==================== Main ==================== -->
+    <div class="container">
+        <!-- Überschrift -->
+        <h1 class="title">夜空</h1>
+        
+        <!-- Searchbar -->
+        <div class="search-container">
+            <form class="search-form" id="searchForm" method="get">
+                <input 
+                    type="text" 
+                    name="q" 
+                    class="search-input" 
+                    placeholder="Searching for stars"
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+
+        <!-- Links -->
+        <div class="links-container" id="linksContainer">
+            <a href="https://github.com" class="link">GitHub</a>
+            <a href="https://stackoverflow.com" class="link">Stack Overflow</a>
+            <a href="https://reddit.com" class="link">Reddit</a>
+            <a href="https://youtube.com" class="link">Youtube</a>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ==================== STERNE ====================
+        let starsContainer = document.getElementById('starsContainer');
+        let stars = [];
+
+        function createRandomStars() {
+            // Alte Sterne entfernen
+            stars.forEach(star => {
+                star.style.opacity = '0';
+                setTimeout(() => {
+                    if (star.parentNode) {
+                        star.parentNode.removeChild(star);
+                    }
+                }, 1000);
+            });
+            stars = [];
+
+            // Neue Sterne erstellen
+            const numStars = Math.floor(Math.random() * 15) + 10; // 10-25 Sterne
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Zufällige Position
+                star.style.top = Math.random() * 100 + '%';
+                star.style.left = Math.random() * 100 + '%';
+                
+                // Zufällige Größe
+                const size = Math.random() * 3 + 1; // 1-4px
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Zufällige Animation-Verzögerung
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                // Langsam einblenden
+                star.style.opacity = '0';
+                setTimeout(() => {
+                    star.style.opacity = '1';
+                }, Math.random() * 2000);
+                
+                starsContainer.appendChild(star);
+                stars.push(star);
+            }
+        }
+
+        // ==================== EINSTELLUNGEN ====================
+        function toggleSettings() {
+            const menu = document.getElementById('settingsMenu');
+            menu.classList.toggle('open');
+        }
+
+        function loadSettings() {
+            // Suchmaschine laden
+            const savedEngine = localStorage.getItem('searchEngine') || 'https://duckduckgo.com/';
+            document.getElementById('searchEngine').value = savedEngine;
+            updateSearchForm();
+
+            // Links laden
+            for (let i = 1; i <= 4; i++) {
+                const savedName = localStorage.getItem(`linkName${i}`);
+                const savedUrl = localStorage.getItem(`linkUrl${i}`);
+                
+                if (savedName) document.getElementById(`linkName${i}`).value = savedName;
+                if (savedUrl) document.getElementById(`linkUrl${i}`).value = savedUrl;
+            }
+            
+            updateLinks();
+        }
+
+        function saveSettings() {
+            // Suchmaschine speichern
+            const searchEngine = document.getElementById('searchEngine').value;
+            localStorage.setItem('searchEngine', searchEngine);
+            updateSearchForm();
+
+            // Links speichern
+            for (let i = 1; i <= 4; i++) {
+                const name = document.getElementById(`linkName${i}`).value;
+                const url = document.getElementById(`linkUrl${i}`).value;
+                
+                localStorage.setItem(`linkName${i}`, name);
+                localStorage.setItem(`linkUrl${i}`, url);
+            }
+            
+            updateLinks();
+            
+            // Menü schließen
+            document.getElementById('settingsMenu').classList.remove('open');
+            
+            // Feedback
+            const button = document.querySelector('.save-button');
+            const originalText = button.textContent;
+            button.textContent = 'Gespeichert!';
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 1500);
+        }
+
+        function updateSearchForm() {
+            const searchEngine = document.getElementById('searchEngine').value;
+            const form = document.getElementById('searchForm');
+            form.action = searchEngine;
+        }
+
+        function updateLinks() {
+            const container = document.getElementById('linksContainer');
+            container.innerHTML = '';
+            
+            const defaultLinks = [
+                {name: 'GitHub', url: 'https://github.com'},
+                {name: 'Stack Overflow', url: 'https://stackoverflow.com'},
+                {name: 'Reddit', url: 'https://reddit.com'},
+                {name: 'Youtube', url: 'https://youtube.com'}
+            ];
+            
+            for (let i = 1; i <= 4; i++) {
+                const name = localStorage.getItem(`linkName${i}`) || defaultLinks[i-1].name;
+                const url = localStorage.getItem(`linkUrl${i}`) || defaultLinks[i-1].url;
+                
+                if (name && url) {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.className = 'link';
+                    link.textContent = name;
+                    link.target = '_blank';
+                    container.appendChild(link);
+                }
+            }
+        }
+
+        // ==================== EVENT LISTENERS ====================
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('settingsMenu');
+            const button = document.querySelector('.settings-button');
+            
+            if (!menu.contains(e.target) && !button.contains(e.target)) {
+                menu.classList.remove('open');
+            }
+        });
+
+        // ==================== INITIALISIERUNG ====================
+        createRandomStars();
+        loadSettings();
+        
+        // Sterne alle 10 Sekunden wechseln
+        setInterval(createRandomStars, 10000);
+    </script>
+</body>
+</html>
