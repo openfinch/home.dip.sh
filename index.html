@@ -24,7 +24,7 @@
 
     <div id="starsContainer" class="stars-container absolute inset-0 pointer-events-none" aria-hidden="true"></div>
 
-    <header role="banner" class="min-h-screen flex items-center justify-center relative z-10">
+    <header role="banner" class="flex items-center justify-center relative z-10 py-12">
         <div class="w-full flex flex-col items-center gap-12 py-8">
             <h1 class="text-center text-amber-50/90 font-light tracking-[0.375em] md:tracking-[0.75em] text-[4rem] md:text-[5.5rem]">
                 <img src="home-light.png" alt="Home" class="h-[1em] w-auto filter drop-shadow-[0_0_20px_rgba(223,222,211,0.3)] mx-auto" />
@@ -32,19 +32,19 @@
         </div>
     </header>
 
-    <main id="mainContent" role="main" class="min-h-screen flex flex-col items-center justify-center relative z-10 gap-12">
+    <main id="mainContent" role="main" class="flex flex-col items-center justify-center relative z-10 gap-12 py-12">
         <section aria-labelledby="searchHeading" class="w-full flex items-center justify-center">
             <h2 id="searchHeading" class="sr-only">Search</h2>
             <form class="relative" id="searchForm" method="get" action="https://noai.duckduckgo.com/" x-data="{ q: '' }" role="search" aria-label="Search the web">
                 <label for="searchInput" class="sr-only">Search the web</label>
                 <input id="searchInput" type="text" name="q" placeholder="Searching for stars" autocomplete="off" x-model="q" required
                        aria-required="true"
-                       class="w-[90vw] max-w-[400px] md:w-[500px] rounded-full border-2 border-amber-50 bg-transparent text-amber-50 placeholder-amber-50/60 px-5 py-3 outline-none transition focus:[box-shadow:0_0_0_3px_rgba(223,222,211,0.08)]" />
+                       class="w-[90vw] max-w-[400px] md:w-[500px] rounded-full border-2 border-amber-50 bg-transparent text-amber-50 placeholder-amber-50/60 px-5 py-3 outline-none transition focus:[box-shadow:0_0_12px_rgba(223,222,211,0.4)]">
                 <button type="submit" :disabled="q.trim().length === 0" aria-label="Search"
                         class="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-amber-50 transition">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                            </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
                 </button>
             </form>
         </section>
@@ -54,8 +54,7 @@
                 <li><a href="https://jellyfin.dip.sh/web/" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Dipflix</a></li>
                 <li><a href="https://jellyseerr.dip.sh/" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Jellyseerr</a></li>
                 <li><a href="https://github.com/openfinch/home.dip.sh" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Source</a></li>
-                <li><a href="https://man.dip.sh" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Notes</a></li> -->
-                <!-- <li><a href="#" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Link Four</a></li> -->
+                <li><a href="https://man.dip.sh" class="text-amber-50/80 hover:text-amber-50 transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Notes</a></li>
             </ul>
         </nav>
     </main>
