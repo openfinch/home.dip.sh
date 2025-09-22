@@ -81,6 +81,22 @@
             }
         }
 
+        // Clear and focus search box on load and when returning via back/forward (bfcache)
+        function focusAndClearSearch() {
+            const input = document.querySelector('input[name="q"]');
+            if (!input) return;
+            input.value = '';
+            // Update Alpine x-model and button disabled state
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            // Focus without scrolling the page
+            input.focus({ preventScroll: true });
+        }
+
+        window.addEventListener('DOMContentLoaded', focusAndClearSearch);
+        window.addEventListener('pageshow', () => {
+            focusAndClearSearch();
+        });
+
         createRandomStars();
         setInterval(createRandomStars, 10000);
     </script>
