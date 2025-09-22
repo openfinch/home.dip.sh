@@ -251,24 +251,22 @@ body {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    background: #dfded3;
+    background: transparent; /* no background */
     border: none;
     border-radius: 25px;
     padding: 10px 14px; /* tighter for icon */
-    color: #000000;
+    color: #dfded3; /* icon uses currentColor */
     cursor: pointer;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
-.search-button:hover {
-    background: rgba(223, 222, 211, 0.9);
-}
+/* no special hover background for search-button */
 
 .search-button[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
-    background: rgba(223, 222, 211, 0.5);
+    background: transparent; /* keep transparent when disabled */
 }
 
 /* ==================== LINKS BEREICH ==================== */
