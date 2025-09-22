@@ -13,21 +13,35 @@
     <meta name="apple-mobile-web-app-title" content="home.dip.sh" />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="manifest" href="/site.webmanifest" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#dfded3'
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="//unpkg.com/alpinejs"></script>
 </head>
 
-<body>
-    <div class="stars-container" id="starsContainer"></div>
-    <div class="container">
-        <h1 class="title">
-            <img src="home-light.png" alt="Home" class="title-image">
+<body class="bg-black h-screen overflow-hidden relative font-sans">
+    <div id="starsContainer" class="stars-container absolute inset-0 pointer-events-none"></div>
+    <div class="min-h-screen flex flex-col items-center justify-center relative z-10 gap-12">
+        <h1 class="text-center text-brand/90 font-light tracking-[0.375em] md:tracking-[0.75em] text-[4rem] md:text-[5.5rem]">
+            <img src="home-light.png" alt="Home" class="h-[1em] w-auto filter drop-shadow-[0_0_20px_rgba(223,222,211,0.3)] mx-auto" />
         </h1>
 
-        <div class="search-container">
-            <form class="search-form" id="searchForm" method="get" action="https://noai.duckduckgo.com/" x-data="{ q: '' }">
-                <input type="text" name="q" class="search-input" placeholder="Searching for stars" autocomplete="off" x-model="q" required>
-                <button type="submit" class="search-button" :disabled="q.trim().length === 0" aria-label="Search">
-                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <div>
+            <form class="relative" id="searchForm" method="get" action="https://noai.duckduckgo.com/" x-data="{ q: '' }">
+                <input type="text" name="q" placeholder="Searching for stars" autocomplete="off" x-model="q" required
+                       class="w-[90vw] max-w-[400px] md:w-[500px] rounded-full border-2 border-brand bg-transparent text-brand placeholder-brand/60 px-5 py-3 outline-none transition focus:[box-shadow:0_0_20px_rgba(223,222,211,0.3)]" />
+                <button type="submit" :disabled="q.trim().length === 0" aria-label="Search"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-brand disabled:opacity-50 disabled:cursor-not-allowed transition">
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" class="pointer-events-none">
                         <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"></circle>
                         <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
                     </svg>
@@ -35,11 +49,11 @@
             </form>
         </div>
 
-        <div class="links-container" id="linksContainer">
-            <a href="https://jellyfin.dip.sh/web/" class="link">Dipflix</a>
-            <!-- <a href="#" class="link">Link Two</a>
-            <a href="#" class="link">Link Three</a>
-            <a href="#" class="link">Link Four</a> -->
+        <div id="linksContainer" class="flex flex-wrap justify-center gap-5 md:gap-10">
+            <a href="https://jellyfin.dip.sh/web/" class="text-brand/80 hover:text-brand transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Dipflix</a>
+            <!-- <a href="#" class="text-brand/80 hover:text-brand transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Link Two</a>
+            <a href="#" class="text-brand/80 hover:text-brand transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Link Three</a>
+            <a href="#" class="text-brand/80 hover:text-brand transition hover:[filter:drop-shadow(0_0_10px_rgba(223,222,211,0.5))]">Link Four</a> -->
         </div>
     </div>
     <script>
