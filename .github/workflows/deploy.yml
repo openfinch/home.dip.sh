@@ -21,10 +21,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: 1.x
+      - uses: 'moonrepo/setup-proto@v0'
+      - run: 'proto use'
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
