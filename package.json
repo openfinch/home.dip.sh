@@ -6,12 +6,13 @@
   "scripts": {
     "dev:css": "mkdir -p dist && tailwindcss -c tailwind.config.js -i ./styles/style.css -o ./dist/styles.css --watch",
   "dev:html": "mkdir -p dist && chokidar --cwd . --initial index.html -c \"html-minifier-terser index.html -o dist/index.html --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-optional-tags --minify-js true\"",
-  "dev:assets": "mkdir -p dist && chokidar --cwd . --initial 'static/**/*' 'img/**/*' -c \"bun run build:assets\"",
+  "dev:assets": "mkdir -p dist && chokidar --cwd . --initial 'static/**/*' 'img/**/*' -c \"bun run optimize:images && bun run build:assets\"",
     "dev": "concurrently -k -n css,html,assets \"bun run dev:css\" \"bun run dev:html\" \"bun run dev:assets\"",
     "build:css": "tailwindcss -c tailwind.config.js -i ./styles/style.css -o ./dist/styles.css --minify",
     "build:html": "html-minifier-terser index.html -o dist/index.html --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-optional-tags --minify-js true",
-  "build:assets": "mkdir -p dist && cp -R static/* dist/ && cp -R img dist/img && sed -E 's#\"/img/#\"img/#g' ./static/site.webmanifest > dist/site.webmanifest && cp -f CNAME dist/CNAME",
-    "build": "mkdir -p dist && bun run build:css && bun run build:assets && bun run build:html",
+    "optimize:images": "bun run scripts/optimize-images.mjs",
+    "build:assets": "mkdir -p dist && cp -R static/* dist/ && cp -R img dist/img && sed -E 's#\"/img/#\"img/#g' ./static/site.webmanifest > dist/site.webmanifest && cp -f CNAME dist/CNAME",
+    "build": "mkdir -p dist && bun run optimize:images && bun run build:css && bun run build:assets && bun run build:html",
     "preview": "serve dist -l 8080 -s"
   },
   "devDependencies": {
@@ -20,6 +21,7 @@
     "html-minifier-terser": "^7.2.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.0.1",
-    "serve": "^14.2.3"
+    "serve": "^14.2.3",
+    "sharp": "^0.33.4"
   }
 }

@@ -16,7 +16,7 @@
     <meta name="apple-mobile-web-app-title" content="home.dip.sh" />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="manifest" href="site.webmanifest" />
-    <link rel="preload" as="image" href="img/home-light.png" fetchpriority="high">
+    <link rel="preload" as="image" href="img/home-light.avif" fetchpriority="high" type="image/avif">
 </head>
 
 <body class="bg-black h-screen overflow-hidden relative font-sans">
@@ -29,8 +29,13 @@
         <header role="banner" class="w-full flex items-center justify-center">
             <div class="w-full flex flex-col items-center">
                 <h1 class="text-center text-amber-50/90 font-light tracking-[0.375em] md:tracking-[0.75em] text-[4rem] md:text-[5.5rem]">
-                <img src="img/home-light.png" alt="Home"
-                         class="h-[1em] w-auto filter drop-shadow-[0_0_20px_rgba(223,222,211,0.3)] mx-auto" />
+                <picture>
+                    <source srcset="img/home-light.avif" type="image/avif">
+                    <source srcset="img/home-light.webp" type="image/webp">
+                    <img src="img/home-light.png" alt="Home"
+                        class="h-[1em] w-auto filter drop-shadow-[0_0_20px_rgba(223,222,211,0.3)] mx-auto"
+                        width="512" height="128" loading="eager" decoding="async" />
+                </picture>
                 </h1>
             </div>
         </header>
