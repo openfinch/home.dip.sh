@@ -11,7 +11,7 @@
     "build:css": "tailwindcss -c tailwind.config.js -i ./styles/style.css -o ./dist/styles.css --minify",
     "build:html": "html-minifier-terser index.html -o dist/index.html --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-optional-tags --minify-js true",
     "optimize:images": "bun run scripts/optimize-images.mjs",
-    "build:assets": "mkdir -p dist && cp -R static/* dist/ && cp -R img dist/img && sed -E 's#\"/img/#\"img/#g' ./static/site.webmanifest > dist/site.webmanifest && cp -f CNAME dist/CNAME",
+    "build:assets": "mkdir -p dist && cp -R static/* dist/ && cp -R img dist/img && cp -f CNAME dist/CNAME",
     "build": "mkdir -p dist && bun run optimize:images && bun run build:css && bun run build:assets && bun run build:html",
     "preview": "serve dist -l 8080 -s"
   },
