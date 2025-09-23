@@ -5,42 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>welcome home</title>
-    <style>
-        .stars-container {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .star {
-            position: absolute;
-            background: #fffbeb;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        /* Respect user motion preferences */
-        @media (prefers-reduced-motion: reduce) {
-            .star { animation: none !important; }
-        }
-    </style>
+    <link rel="author" href="humans.txt" />
+    <link rel="preload" as="style" href="styles.css" />
+    <link rel="stylesheet" href="styles.css" />
     <meta name="color-scheme" content="dark light" />
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="img/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="home.dip.sh" />
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
-    <link rel="preload" as="image" href="/home-light.png" fetchpriority="high">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="preload" as="image" href="img/home-light.png" fetchpriority="high">
 </head>
 
 <body class="bg-black h-screen overflow-hidden relative font-sans">
@@ -53,7 +29,7 @@
         <header role="banner" class="w-full flex items-center justify-center">
             <div class="w-full flex flex-col items-center">
                 <h1 class="text-center text-amber-50/90 font-light tracking-[0.375em] md:tracking-[0.75em] text-[4rem] md:text-[5.5rem]">
-                    <img src="home-light.png" alt="Home"
+                <img src="img/home-light.png" alt="Home"
                          class="h-[1em] w-auto filter drop-shadow-[0_0_20px_rgba(223,222,211,0.3)] mx-auto" />
                 </h1>
             </div>
